@@ -28,7 +28,28 @@ class HomeController extends Controller
 
         foreach ($results as $result){
             $total = round(($result->sub1+$result->sub2+$result->sub3+$result->sub4+$result->sub5+$result->sub6)/6);
-            $result->cgpa = 5;
+            if($total< 40){
+                $cgpa = 0;
+            }elseif($total<45){
+                $cgpa = 2;
+            }elseif($total<50){
+                $cgpa = 2.25;
+            }elseif($total<55){
+                $cgpa = 2.50;
+            }elseif($total<60){
+                $cgpa = 2.75;
+            }elseif($total<65){
+                $cgpa = 3.00;
+            }elseif($total<70){
+                $cgpa = 3.25;
+            }elseif($total<75){
+                $cgpa = 3.50;
+            }elseif($total<80){
+                $cgpa = 3.75;
+            }else{
+                $cgpa = 4.00;
+            }
+            $result->cgpa = $cgpa;
         }
         return view('welcome', [
             'results' => $results,
